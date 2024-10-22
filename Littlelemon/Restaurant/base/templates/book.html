@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+  <article>
+    <h1>Make a reservation</h1>
+    {% if success_message %}
+      <p class="success">{{ success_message }}</p>
+    {% endif %}
+
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="column">
+          <label for="first_name">First Name:</label>
+          <input type="text" id="first_name" name="first_name" required>
+          {% if form.errors.first_name %}
+            <ul class="error">
+              {% for error in form.errors.first_name %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        <div class="column">
+          <label for="last_name">Last Name:</label>
+          <input type="text" id="last_name" name="last_name" required>
+          {% if form.errors.last_name %}
+            <ul class="error">
+              {% for error in form.errors.last_name %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <label for="guest_number">Number of Guests:</label>
+          <input type="number" id="guest_number" name="guest_number" min="1" required>
+          {% if form.errors.guest_number %}
+            <ul class="error">
+              {% for error in form.errors.guest_number %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        <div class="column">
+          <label for="comment">Comments (Optional):</label>
+          <textarea id="comment" name="comment" rows="4"></textarea>
+          {% if form.errors.comment %}
+            <ul class="error">
+              {% for error in form.errors.comment %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- New Fields for Date and Time -->
+      <div class="row">
+        <div class="column">
+          <label for="booking_date">Booking Date:</label>
+          <input type="date" id="booking_date" name="booking_date" value="{{ form.booking_date.value|default_if_none:'' }}" required>
+          {% if form.errors.booking_date %}
+            <ul class="error">
+              {% for error in form.errors.booking_date %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="column">
+          <label for="booking_time">Booking Time:</label>
+          <input type="time" id="booking_time" name="booking_time" value="{{ form.booking_time.value|default_if_none:'' }}" required>
+          {% if form.errors.booking_time %}
+            <ul class="error">
+              {% for error in form.errors.booking_time %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <input type="submit" value="Submit Reservation" id="button">
+        </div>
+      </div>
+    </form>
+  </article>
+</section>
+{% endblock %}

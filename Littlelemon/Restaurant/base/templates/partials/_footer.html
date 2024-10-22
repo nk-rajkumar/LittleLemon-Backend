@@ -1,0 +1,37 @@
+{% load static %}
+<footer>
+    <article>
+        {% block content %}
+        <section class="contact">
+            <h1>Contact Us</h1>
+            <p>Address: 123 Restaurant Lane, Food City, FC 12345</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Email: contact@restaurant.com</p>
+        </section>
+        {% endblock %}
+
+        <img src="{% static 'img/logo_footer.png' %}" />
+    </article>
+    <article>
+        <p>Copyright © Little Lemon</p>
+    </article>
+</footer>
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Assuming you have a "Contact" link elsewhere on the page
+            const contactLink = document.getElementById('contact-link'); // Change this ID to your actual link ID
+
+            if (contactLink) {
+                contactLink.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    window.scrollTo({
+                        top: document.body.scrollHeight, // Scrolls to the bottom of the page
+                        behavior: 'smooth' // Smooth scrolling
+                    });
+                });
+            }
+        });
+    </script>
+{% endblock %}
