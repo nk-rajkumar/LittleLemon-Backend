@@ -11,8 +11,7 @@ This Django-based web application provides a user-friendly platform for customer
 ## Technologies Used
 - Python
 - Django 
-- HTML/CSS
-- JavaScript
+- HTML/CSS/JavaScript
 - SQLite (default database)
 
 ## Run Locally
